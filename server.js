@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { allowedNodeEnvironmentFlags, exit } = require('process');
 
 const questions = () => {
 
@@ -12,35 +13,35 @@ const questions = () => {
             choices: [
                 {
                     name: 'View all departments',
-                    value: ''
+                    value: 'viewDepartment'
                 },
                 {
                     name: 'View all roles',
-                    value: ''
+                    value: 'viewRoles'
                 },
                 {
                     name: 'View all employees',
-                    value: ''
+                    value: 'viewEmployees'
                 },
                 {
                     name: 'Add a department',
-                    value: ''
+                    value: 'addDepartment'
                 },
                 {
                     name: 'Add a role',
-                    value: ''
+                    value: 'addRoles'
                 },
                 {
                     name: 'Add an employee',
-                    value: ''
+                    value: 'addEmployee'
                 },
                 {
                     name: 'Update an employee role',
-                    value: ''
+                    value: 'UpdateEmployee'
                 },
                 {
                     name: 'Exit',
-                    value: ''
+                    value: 'exit'
                 }
             ],
         }, 
@@ -48,7 +49,29 @@ const questions = () => {
         let task = answers.task;
         //assign functions based on user answer utilizing switch and case 
         switch(task){
-
+            case "viewDepartment":
+                viewDepartment();
+                break;
+            case "viewRoles":
+                viewRoles();
+                break;
+            case "viewEmployees":
+                viewEmployees();
+                break;
+            case "addDepartment":
+                addDepartment();
+                break;
+            case "addRoles":
+                addRoles();
+                break;
+            case "addEmployee":
+                addEmployee();
+                break;
+            case "updateEmployee":
+                updateEmployee();
+                break;
+            default:
+                exit();
         }
     });
 };
